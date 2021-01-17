@@ -1,5 +1,6 @@
 // see SignupForm.js for comments
-import React, { useState, useMutation } from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/react-hooks'
 import { Form, Button, Alert } from 'react-bootstrap';
 
 //import { loginUser } from '../utils/API';
@@ -34,6 +35,7 @@ const LoginForm = () => {
         variables: { ...userFormData }
       });
     
+      console.log(data.login.token)
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);

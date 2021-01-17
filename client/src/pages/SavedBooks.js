@@ -3,7 +3,8 @@ import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap
 import { QUERY_ME } from '../utils/queries';
 //import { REMOVE_BOOK } from '../utils/mutations';
 
-import { getMe, deleteBook } from '../utils/API'; //this not
+//import { getMe, deleteBook } from '../utils/API'; //this not
+import { deleteBook } from '../utils/API'; //this not
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
 

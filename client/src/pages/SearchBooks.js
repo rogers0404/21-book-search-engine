@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMutation } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
-
+import { useMutation } from '@apollo/react-hooks'
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+//import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
-import {SAVE_BOOK} from '../utils/mutations.js';
+import {SAVE_BOOK} from '../utils/mutations';
 
 const SearchBooks = () => {
   // create state for holding returned google api data
@@ -15,14 +16,16 @@ const SearchBooks = () => {
   // create state to hold saved bookId values
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
+    //Execute useMutation hook to save book inside user's data
+   const [bookSavingData, { error }] = useMutation(SAVE_BOOK);
+
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
   });
 
-  //Execute useMutation hook to save book inside user's data
-  const [mutationBook] = useMutation(SAVE_BOOK);
+
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -70,12 +73,13 @@ const SearchBooks = () => {
 
     try {
       // execute addUser mutation and pass in variable data from form
-      const { data } = await mutationBook({
+      const { data } = await bookSavingData({
         variables: { ...bookToSave, token }
       });
-      //const response = await saveBook(bookToSave, token); //CHANGE SAVEBOOK
+      console.log(data)
+      /* const response = await saveBook(bookToSave, token); //CHANGE SAVEBOOK
 
-      /* if (!response.ok) {
+      if (!response.ok) {
         throw new Error('something went wrong!');
       } */
 
@@ -146,6 +150,7 @@ const SearchBooks = () => {
           })}
         </CardColumns>
       </Container>
+      {error && <div>Saving Book failed</div>}
     </>
   );
 };
