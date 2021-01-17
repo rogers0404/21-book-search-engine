@@ -26,11 +26,21 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 `;
 
 export const SAVE_BOOK = gql`
-mutation saveBook($title: String!, $authors: [String], $description: String!, $bookId: String!, $image: String!, $link: String!) {
-  saveBook(title: $title, authors: $authors, description: $description, bookId: $bookId, image: $image, link: $link) {     
-      _id
-      email
-    username
+  mutation saveBook($title: String!, $authors: [String], $description: String!, $bookId: String!, $image: String!, $link: String!) {
+    saveBook(title: $title, authors: $authors, description: $description, bookId: $bookId, image: $image, link: $link) {     
+				_id
+      	email
+      username
+    }
   }
-}
+`;
+
+export const REMOVE_BOOK = gql`
+  mutation removeBook($id: String!) {
+    removeBook(id: $id) {
+      _id
+      username
+      email
+    }
+  }
 `;
