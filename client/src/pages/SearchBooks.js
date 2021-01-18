@@ -48,7 +48,7 @@ const SearchBooks = () => {
         bookId: book.id,
         authors: book.volumeInfo.authors || ['No author to display'],
         title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
+        description: book.volumeInfo.description || 'No description available',  //refactor to add OR option whether it has description or nop
         image: book.volumeInfo.imageLinks?.thumbnail || '',
         link: book.volumeInfo.infoLink || '',   //refactor to add link to the object created for book
       }));
@@ -65,9 +65,11 @@ const SearchBooks = () => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 
+   
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-
+    console.log(bookToSave);
+    console.log(token)
     if (!token) {
       return false;
     }
