@@ -64,6 +64,7 @@ const SavedBooks = () => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     
+    console.log("estoy pasando por aqui");
     console.log(bookId);
     console.log(token);
     if (!token) {
@@ -84,6 +85,9 @@ const SavedBooks = () => {
       const { data } = await removeBookData({
         variables: { ...bookId, token }
       });
+
+      console.log("===========estoy pasando por aqui==================");
+      console.log(data);
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
