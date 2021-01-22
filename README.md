@@ -21,7 +21,7 @@ Wonderful App to search books from Google API. Enjoy Read!
 ## URLs
 
 * Deployed Application: 
-    - [http://rogers0404.github.io/Professional-Portfolio](http://rogers0404.github.io/Professional-Portfolio) (live)
+    - [https://keep-reading-search.herokuapp.com/](https://keep-reading-search.herokuapp.com/) (live)
 
 * GitHub Repository:
     - [HTTPS: https://github.com/rogers0404/21-book-search-engine.git](https://github.com/rogers0404/21-book-search-engine.git)
