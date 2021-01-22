@@ -37,26 +37,65 @@ You need some packages to run this application,
 Back-End
 
 - `npm i express                    // or npm install express to get all packages and dependencies of Express`
-- `npm create-react-app professional-portfolio-v1       // or npx install to get all packages and dependencies of React`
+- `npm i apollo-server-express       // or npm install apollo-server-express to get all packages and dependencies of Apollo`
+- `npm i jsonwebtoken               // or npm install JSON WEB TOKEN `
+- `npm install jwt-decode               // or npm install JSON WEB TOKEN decoding `
+
 Front-End
-- `npx create-react-app professional-portfolio-v1       // or npx install to get all packages and dependencies of React`
-- 
-- `npm i apollo-boost graphql graphql-tag @apollo/react-hooks                             //gh-pages as a devDependency`
+
+- `npx create-react-app book-search-engine       // or npx install to get all packages and dependencies of React`
+- `npm i apollo-boost graphql graphql-tag @apollo/react-hooks       // or install libraries to get all packages and dependencies of Apollo Client, GraphQL and Apollo Hooks`
+
+Back-end and Front-End Integration 
+
+- `npm install if-env               //checking the environment we're in and execute a select npm script`
+- `npm install -D concurrently      //package for running multiple processes concurrently`
 
 ## Usage 
 
 Developing Component Funtions in React:
 
 `import React from 'react';`
-`import NavBar from '../NavBar';`
-`function HeaderPage(props) {`
+
+`// add these two library import statements`
+`import { ApolloProvider } from '@apollo/react-hooks';`
+`import ApolloClient from 'apollo-boost';`
+`import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';`
+`import SearchBooks from './pages/SearchBooks';`
+`import SavedBooks from './pages/SavedBooks';`
+`import Navbar from './components/Navbar';`
+
+`const client = new ApolloClient({`
+`  request: operation => {`
+`    const token = localStorage.getItem('id_token');`
+
+`    operation.setContext({`
+`      headers: {`
+`        authorization: token ? ``Bearer ${token}` `: ''`
+`      }`
+`    });`
+`  },`
+`  uri: '/graphql'`
+`});`
+`function App() {`
 `  return (`
-`    <header className="headerImage">`
-`            <NavBar currentPage={props.currentPage} handlePageChange={props.handlePageChange} />`
-`    </header>`
+`  <ApolloProvider client={client}>`
+`    <Router>`
+`      <>`
+`        <Navbar />`
+`        <Switch>`
+`          <Route exact path='/' component={SearchBooks} />`
+`          <Route exact path='/saved' component={SavedBooks} />`
+`          <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />`
+`        </Switch>`
+`      </>`
+`    </Router>`
+`    </ApolloProvider>`
 `  );`
 `}`
-`export default HeaderPage;`
+
+`export default App;`
+
 
 The starting command-line is:
 
