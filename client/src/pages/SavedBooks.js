@@ -16,47 +16,12 @@ const SavedBooks = () => {
    const user = data?.me || {};
 
    const [userData, setUserData] = useState({});
-    console.log(user);
-    
-    //setUserData(user);
-    console.log(userData);
 
   // use this to determine if `useEffect()` hook needs to run again
-  const userDataLength = Object.keys(user).length;
-
-  console.log(userDataLength)
- 
+  const userDataLength = Object.keys(user).length; 
   
   //Execute useMutation hook to REMOVE book inside user's data
   const [removeBookData] = useMutation(REMOVE_BOOK);
-
-  //setUserData(data);
-/* 
-   const getUserData = async () => {
-      try {
-        const token = Auth.loggedIn() ? Auth.getToken() : null;
-        console.log(token)
-        if (!token) {
-          return false;
-        }
-
-       /*  const response = await getMe(token);
-
-        if (!response.ok) {
-          throw new Error('something went wrong!');
-        } 
-
-        //const { data } = await dataUser;
-        console.log(dataUser)
-
-        //const user = dataUser?.me;
-        setUserData(dataUser?.me);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getUserData();  */
 
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -72,26 +37,15 @@ const SavedBooks = () => {
     }
 
     try {
-     /*  const response = await deleteBook(bookId, token);
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const updatedUser = await response.json();
-       */
-
-      
+     
       const { data } = await removeBookData({
-        variables: { ...bookId, token }
+        variables: {bookId: bookId}
       });
-
-      console.log("===========estoy pasando por aqui==================");
-      console.log(data);
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
       setUserData(data);
+      window.location.reload('/saved')    //Added reload page route to render again the deletion
     } catch (err) {
       console.error(err);
     }
