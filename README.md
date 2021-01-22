@@ -134,9 +134,9 @@ for more information you can have a question via email [rogers.ramirez2008@gmail
 
 ### Video 1
 
-[Video 1: YouTube](https://youtu.be/rJUqgRAPIac)
+[Video 1: YouTube](https://youtu.be/kSMJeXhi5As)
 
 ### Video 2
 
-[Video 2: Google Drive](https://drive.google.com/file/d/1jPh6ioIH33oQQdOVNy_d3oNT7tdcM0u1/view)
+[Video 2: Google Drive](https://drive.google.com/file/d/1z-1Bchs2q8-xPcut333BYMeicHr3ECB1/view)
 
