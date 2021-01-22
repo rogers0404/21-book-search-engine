@@ -41,7 +41,7 @@ class AuthService {
   logout() {
     // Clear user token and profile data from localStorage
     localStorage.removeItem('id_token');
-    // clear the user localStore for savedBooks
+    // clear the user localStore for savedBooks. Added this feature inside localStore functionality
     localStorage.removeItem('saved_books');
     // this will reload the page and reset the state of the application
     window.location.assign('/');

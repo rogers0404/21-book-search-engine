@@ -18,16 +18,15 @@ module.exports = {
         .trim();
     }
 
-    //console.log(token);
     if (!token) {
       return req;
     }
 
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      //console.log(data);
+      
       req.user = data;
-      //console.log(data);
+      
     } catch {
       console.log('Invalid token');
     }

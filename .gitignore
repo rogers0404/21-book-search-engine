@@ -27,6 +27,7 @@ yarn-error.log*
 Develop
 client/package-lock.json
 server/package-lock.json
-.vscode/
+.vscode
+package-lock.json
 
 text

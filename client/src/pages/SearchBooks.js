@@ -68,25 +68,17 @@ const SearchBooks = () => {
    
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
-    console.log(bookToSave);
-    console.log(token)
+    
     if (!token) {
       return false;
     }
 
     try {
       // execute addUser mutation and pass in variable data from form
-      const { data } = await bookSavingData({
+      await bookSavingData({
         variables: { ...bookToSave, token }
       });
-      console.log(data)
-      /* const response = await saveBook(bookToSave, token); //CHANGE SAVEBOOK
-
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      } */
-
-      // if book successfully saves to user's account, save book id to state
+ 
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
